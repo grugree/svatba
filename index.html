@@ -797,7 +797,12 @@
       <div class="rule"><i></i><b></b><i></i></div>
     </div>
 
-    <form id="rsvpForm" novalidate>
+    <form id="rsvpForm" action="https://formsubmit.co/grugree@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Svatba – potvrzení účasti">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://grugree.github.io/svatba/?sent=1#rsvp">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div class="field">
         <label for="fName">Jméno a příjmení</label>
         <input type="text" id="fName" name="Jméno" required autocomplete="name">
@@ -907,37 +912,14 @@
     events.forEach(function(el){ el.classList.add('in'); });
   }
 
-  // RSVP -> FormSubmit (e-mail se doplní)
-  var RSVP_EMAIL = 'grugree@gmail.com';
-  var form = document.getElementById('rsvpForm');
+  // RSVP: po návratu z FormSubmit (?sent=1) zobrazit poděkování
   var status = document.getElementById('rsvpStatus');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = document.getElementById('fName').value.trim();
-    if (!name) {
-      status.className = 'status err';
-      status.textContent = 'Vyplňte prosím jméno.';
-      return;
-    }
-    var fd = new FormData(form);
-    fd.append('_subject', 'Svatba – potvrzení účasti: ' + name);
-    fd.append('_template', 'table');
-    fd.append('_captcha', 'false');
+  if (window.location.search.indexOf('sent=1') !== -1) {
     status.className = 'status ok';
-    status.textContent = 'Odesílám…';
-    fetch('https://formsubmit.co/ajax/' + RSVP_EMAIL, {
-      method: 'POST',
-      headers: {'Accept': 'application/json'},
-      body: fd
-    }).then(function(r){ return r.json(); }).then(function(){
-      form.reset();
-      status.className = 'status ok';
-      status.textContent = 'Děkujeme! Vaše odpověď byla odeslána. 🤍';
-    }).catch(function(){
-      status.className = 'status err';
-      status.textContent = 'Odeslání se nepodařilo, zkuste to prosím znovu.';
-    });
-  });
+    status.textContent = 'Děkujeme! Vaše odpověď byla odeslána. 🤍';
+    var r = document.getElementById('rsvp');
+    if (r) setTimeout(function(){ r.scrollIntoView({behavior:'smooth'}); }, 400);
+  }
 })();
 </script>
 
