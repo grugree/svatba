@@ -195,21 +195,18 @@
   /* ---------- ÚVOD / POZVÁNKA ---------- */
   .intro{
     position:relative;
-    padding:76px 30px 210px;
+    padding:76px 30px 34px;
     background:
       radial-gradient(480px 320px at 112% 0%, var(--petal-soft) 0%, rgba(245,239,250,0) 60%),
       var(--white);
   }
   .intro-inner{position:relative;z-index:1;max-width:460px;margin:0 auto;text-align:center;}
   .intro .bloom{
-    position:absolute;
-    left:50%;
-    bottom:-36px;
-    transform:translateX(-50%);
-    width:min(360px, 78vw);
-    opacity:.32;
+    display:block;
+    margin:30px auto 0;
+    width:min(300px, 68vw);
+    opacity:.2;
     pointer-events:none;
-    z-index:0;
   }
   .intro h2{
     font-weight:400;
