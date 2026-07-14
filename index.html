@@ -3,27 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Tom &amp; Anička · Svatba</title>
+<title>Tom &amp; Anička · 18. září 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --lila:#C9B8E8;
-    --lila-soft:#EFEAF9;
-    --lila-deep:#8F7BB8;
-    --blue:#BFD9EC;
-    --blue-soft:#EAF3FA;
-    --blue-deep:#7FA6C4;
+    /* paleta z hortenzií */
+    --petal:#E9DFF5;      /* blushing petal */
+    --petal-soft:#F5EFFA;
+    --lilac:#B49CD8;      /* lilac mist */
+    --dew:#A9C0EA;        /* morning dew */
+    --dew-soft:#EDF2FB;
+    --sky:#5C77AE;        /* seaside sky */
+    --night:#22304F;      /* twilight bloom */
+    --ink-soft:#75809E;
     --white:#FFFFFF;
-    --ink:#4B4459;
-    --ink-soft:#8B8499;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     font-family:'Karla',sans-serif;
-    color:var(--ink);
+    color:var(--night);
     background:var(--white);
     -webkit-font-smoothing:antialiased;
   }
@@ -34,7 +35,7 @@
     height:100vh;
     height:100svh;
     overflow:hidden;
-    background:#DCD3EE;
+    background:var(--petal);
   }
   .hero video{
     position:absolute;
@@ -46,16 +47,16 @@
   .hero-veil{
     position:absolute;
     inset:0;
-    background:linear-gradient(to bottom, rgba(75,68,89,.22) 0%, rgba(75,68,89,0) 32%, rgba(75,68,89,0) 58%, rgba(75,68,89,.4) 100%);
+    background:linear-gradient(to bottom, rgba(34,48,79,.28) 0%, rgba(34,48,79,0) 32%, rgba(34,48,79,0) 56%, rgba(34,48,79,.45) 100%);
     pointer-events:none;
   }
   .hero-names{
     position:absolute;
-    top:calc(env(safe-area-inset-top, 0px) + 40px);
+    top:calc(env(safe-area-inset-top, 0px) + 38px);
     left:0; right:0;
     text-align:center;
     color:var(--white);
-    text-shadow:0 1px 20px rgba(75,68,89,.4);
+    text-shadow:0 1px 20px rgba(34,48,79,.45);
     opacity:0;
     animation:riseIn 1.4s ease .3s forwards;
   }
@@ -72,14 +73,14 @@
     opacity:.94;
   }
   .hero-names .line{
-    width:1px;height:26px;
-    margin:14px auto;
+    width:1px;height:24px;
+    margin:13px auto;
     background:linear-gradient(to bottom, transparent, rgba(255,255,255,.9));
   }
   .hero-names h1{
     font-family:'Cormorant Garamond',serif;
     font-weight:400;
-    font-size:50px;
+    font-size:48px;
     line-height:1.08;
     letter-spacing:.01em;
   }
@@ -89,6 +90,14 @@
     font-size:.66em;
     opacity:.92;
     padding:0 .08em;
+  }
+  .hero-names .date{
+    margin-top:14px;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:20px;
+    letter-spacing:.14em;
+    opacity:.95;
   }
   .hero-bottom{
     position:absolute;
@@ -110,7 +119,7 @@
     text-transform:uppercase;
     text-decoration:none;
     color:var(--white);
-    text-shadow:0 1px 14px rgba(75,68,89,.45);
+    text-shadow:0 1px 14px rgba(34,48,79,.5);
   }
   .scroll-cue svg{animation:drift 2.2s ease-in-out infinite;}
   @keyframes drift{
@@ -124,7 +133,7 @@
     width:46px;height:46px;
     border-radius:50%;
     border:1px solid rgba(255,255,255,.7);
-    background:rgba(75,68,89,.24);
+    background:rgba(34,48,79,.28);
     backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(8px);
     color:var(--white);
@@ -132,17 +141,15 @@
     cursor:pointer;
     transition:background .25s ease;
   }
-  .sound-btn:active{background:rgba(75,68,89,.4);}
+  .sound-btn:active{background:rgba(34,48,79,.45);}
   .sound-btn svg{width:20px;height:20px;}
-
-  /* tichá pojistka: overlay pro spuštění, ukáže se jen když autoplay selže */
   .tap-play{
     position:absolute;
     inset:0;
     display:none;
     align-items:center;
     justify-content:center;
-    background:rgba(75,68,89,.25);
+    background:rgba(34,48,79,.25);
     border:none;
     cursor:pointer;
   }
@@ -158,57 +165,93 @@
   }
   .tap-play svg{width:26px;height:26px;color:#fff;margin-left:4px;}
 
-  /* ---------- HARMONOGRAM ---------- */
-  .schedule{
-    position:relative;
-    padding:80px 28px 48px;
-    background:
-      radial-gradient(520px 340px at 110% 4%, var(--lila-soft) 0%, rgba(239,234,249,0) 62%),
-      radial-gradient(520px 360px at -12% 58%, var(--blue-soft) 0%, rgba(234,243,250,0) 62%),
-      var(--white);
-    overflow:hidden;
-  }
-  .schedule-inner{max-width:480px;margin:0 auto;}
-  .schedule-head{
-    text-align:center;
-    margin-bottom:60px;
-  }
-  .schedule-head .eyebrow{
+  /* ---------- SPOLEČNÉ ---------- */
+  .eyebrow{
     font-size:11px;
     letter-spacing:.38em;
     text-indent:.38em;
     text-transform:uppercase;
-    color:var(--lila-deep);
+    color:var(--sky);
     font-weight:500;
   }
-  .schedule-head h2{
+  .section-head{text-align:center;margin-bottom:52px;}
+  .section-head h2{
     font-family:'Cormorant Garamond',serif;
     font-weight:400;
-    font-size:38px;
+    font-size:36px;
     margin-top:14px;
-    color:var(--ink);
+    color:var(--night);
   }
-  .schedule-head .rule{
+  .rule{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:10px;
-    margin-top:22px;
+    margin-top:20px;
   }
-  .schedule-head .rule i{
+  .rule i{
     display:block;
     width:44px;height:1px;
-    background:linear-gradient(to right, transparent, var(--lila));
+    background:linear-gradient(to right, transparent, var(--lilac));
   }
-  .schedule-head .rule i:last-child{
-    background:linear-gradient(to left, transparent, var(--blue));
+  .rule i:last-child{
+    background:linear-gradient(to left, transparent, var(--dew));
   }
-  .schedule-head .rule b{
+  .rule b{
     width:5px;height:5px;
     border-radius:50%;
-    background:linear-gradient(135deg, var(--lila), var(--blue));
+    background:linear-gradient(135deg, var(--lilac), var(--dew));
   }
 
+  /* ---------- ÚVOD / POZVÁNKA ---------- */
+  .intro{
+    padding:76px 30px 24px;
+    background:
+      radial-gradient(480px 320px at 112% 0%, var(--petal-soft) 0%, rgba(245,239,250,0) 60%),
+      var(--white);
+  }
+  .intro-inner{max-width:440px;margin:0 auto;text-align:center;}
+  .intro h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:30px;
+    color:var(--night);
+    margin-top:14px;
+  }
+  .intro p{
+    margin-top:20px;
+    font-size:15px;
+    line-height:1.75;
+    font-weight:300;
+    color:var(--night);
+  }
+  .intro p.date-line{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:21px;
+    color:var(--sky);
+    letter-spacing:.04em;
+  }
+  .intro .closing{
+    margin-top:22px;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--night);
+  }
+
+  /* ---------- HARMONOGRAM ---------- */
+  .schedule{
+    position:relative;
+    padding:72px 28px 48px;
+    background:
+      radial-gradient(520px 340px at 110% 8%, var(--petal-soft) 0%, rgba(245,239,250,0) 62%),
+      radial-gradient(520px 360px at -12% 55%, var(--dew-soft) 0%, rgba(237,242,251,0) 62%),
+      var(--white);
+    overflow:hidden;
+  }
+  .schedule-inner{max-width:480px;margin:0 auto;}
   .timeline{
     position:relative;
     padding-left:96px;
@@ -220,7 +263,7 @@
     top:8px;
     bottom:8px;
     width:1px;
-    background:linear-gradient(to bottom, var(--lila) 0%, var(--blue) 100%);
+    background:linear-gradient(to bottom, var(--lilac) 0%, var(--dew) 55%, var(--sky) 100%);
   }
   .event{
     position:relative;
@@ -250,35 +293,59 @@
     width:9px;height:9px;
     border-radius:50%;
     background:var(--white);
-    border:1.5px solid var(--lila-deep);
+    border:1.5px solid var(--lilac);
   }
-  .event:nth-child(even) .dot{border-color:var(--blue-deep);}
+  .event:nth-child(even) .dot{border-color:var(--sky);}
   .event h3{
     font-family:'Cormorant Garamond',serif;
     font-weight:500;
     font-size:22px;
     line-height:1.2;
-    color:var(--ink);
+    color:var(--night);
   }
+  .event .place{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:7px;
+    font-size:12.5px;
+    letter-spacing:.05em;
+    color:var(--sky);
+    font-weight:500;
+  }
+  .event .place svg{width:12px;height:12px;flex:none;}
   .event p{
-    margin-top:6px;
+    margin-top:7px;
     font-size:14px;
-    line-height:1.55;
+    line-height:1.6;
     color:var(--ink-soft);
     font-weight:300;
+  }
+  .event .note{
+    margin-top:12px;
+    padding:14px 16px;
+    border-radius:14px;
+    background:var(--petal-soft);
+    border:1px solid var(--petal);
+  }
+  .event .note p{margin-top:0;color:var(--night);opacity:.85;}
+  .event .note p + p{margin-top:10px;}
+  .event .note .tip{
+    font-weight:500;
+    color:var(--sky);
   }
   .event.milestone .dot{
     width:13px;height:13px;
     left:-30px;
     top:5px;
-    background:var(--lila);
-    border-color:var(--lila);
-    box-shadow:0 0 0 4px rgba(201,184,232,.25);
+    background:var(--lilac);
+    border-color:var(--lilac);
+    box-shadow:0 0 0 4px rgba(180,156,216,.22);
   }
   .event.milestone:nth-child(even) .dot{
-    background:var(--blue);
-    border-color:var(--blue);
-    box-shadow:0 0 0 4px rgba(191,217,236,.3);
+    background:var(--dew);
+    border-color:var(--dew);
+    box-shadow:0 0 0 4px rgba(169,192,234,.28);
   }
   .event.milestone h3{
     font-size:25px;
@@ -286,24 +353,64 @@
     font-weight:400;
   }
 
+  /* ---------- PLAYLIST + RSVP (zatím skryté, čeká se na odkazy) ---------- */
+  .cards{
+    display:none; /* zobrazí se po doplnění odkazů */
+    padding:8px 28px 64px;
+    background:var(--white);
+  }
+  .cards-inner{
+    max-width:480px;margin:0 auto;
+    display:grid;gap:18px;
+  }
+  .card{
+    text-align:center;
+    padding:30px 26px;
+    border-radius:20px;
+    background:linear-gradient(135deg, var(--petal-soft), var(--dew-soft));
+    border:1px solid var(--petal);
+  }
+  .card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:24px;
+    color:var(--night);
+  }
+  .card p{
+    margin-top:8px;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    font-weight:300;
+  }
+  .card a{
+    display:inline-block;
+    margin-top:16px;
+    padding:12px 28px;
+    border-radius:999px;
+    background:var(--night);
+    color:var(--white);
+    text-decoration:none;
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+
   /* ---------- PATIČKA ---------- */
   footer{
     text-align:center;
     padding:64px 28px calc(env(safe-area-inset-bottom, 0px) + 56px);
-    background:linear-gradient(to bottom, var(--white), var(--lila-soft));
+    background:linear-gradient(to bottom, var(--white), var(--petal));
   }
   footer .amp-mark{
     font-family:'Cormorant Garamond',serif;
     font-style:italic;
     font-size:38px;
-    color:var(--lila-deep);
+    color:var(--sky);
   }
-  footer .rule{
-    width:1px;height:30px;
-    margin:16px auto;
-    background:linear-gradient(to bottom, var(--lila), transparent);
-  }
+  footer .rule{margin-top:16px;}
   footer p{
+    margin-top:16px;
     font-size:12px;
     letter-spacing:.3em;
     text-indent:.3em;
@@ -318,7 +425,7 @@
     html{scroll-behavior:auto;}
   }
   @media (min-width:600px){
-    .hero-names h1{font-size:60px;}
+    .hero-names h1{font-size:58px;}
   }
 </style>
 </head>
@@ -329,14 +436,15 @@
   <div class="hero-veil"></div>
 
   <div class="hero-names">
-    <div class="eyebrow">Budeme se brát</div>
+    <div class="eyebrow" style="color:#fff">Budeme se brát</div>
     <div class="line"></div>
     <h1>Tom <span class="amp">&amp;</span> Anička</h1>
+    <div class="date">18. září 2026</div>
   </div>
 
   <div class="hero-bottom">
-    <a class="scroll-cue" href="#harmonogram">
-      <span>Harmonogram</span>
+    <a class="scroll-cue" href="#uvod">
+      <span>Pozvánka</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -359,9 +467,21 @@
   </button>
 </section>
 
+<section class="intro" id="uvod">
+  <div class="intro-inner">
+    <div class="eyebrow">Pozvánka</div>
+    <h2>Naši nejdražší!</h2>
+    <p>Čekání je u konce. Po dvou a půl letech od našeho zasnoubení nadešel den, kdy si konečně řekneme své vysněné „ano“.</p>
+    <p>Bylo naším přáním prožít tento okamžik obklopeni lidmi, které máme rádi. Proto jsme nesmírně šťastní, že jej můžeme sdílet právě s vámi.</p>
+    <p class="date-line">Srdečně vás zveme na naši svatbu 18. září</p>
+    <p>a těšíme se na den plný lásky, radosti a společných vzpomínek. Níže najdete harmonogram celého dne.</p>
+    <p class="closing">Těšíme se na vás!</p>
+  </div>
+</section>
+
 <section class="schedule" id="harmonogram">
   <div class="schedule-inner">
-    <div class="schedule-head">
+    <div class="section-head">
       <div class="eyebrow">Svatební den</div>
       <h2>Harmonogram</h2>
       <div class="rule"><i></i><b></b><i></i></div>
@@ -371,7 +491,15 @@
       <div class="event">
         <span class="time">12:00</span><span class="dot"></span>
         <h3>Příjezd hostů</h3>
-        <p>Uvítání a welcome drink v zahradách.</p>
+        <span class="place">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Ledeburská zahrada
+        </span>
+        <p>Uvítání a welcome drink.</p>
+        <div class="note">
+          <p>Pokud přijedete autem, zvažte prosím jeho zaparkování na některém z parkovišť na okraji Prahy nebo na jiném vhodném místě. Po skončení obřadu budeme všichni společně odjíždět historickou tramvají na místo svatební hostiny, a bude pro nás nejpohodlnější, když nebudeme muset řešit přesun jednotlivých vozů z centra města.</p>
+          <p><span class="tip">Tip:</span> Chcete‑li mít auto po skončení večera hned po ruce, můžete ho nechat zaparkované již před obřadem u restaurace Bastion, kde jsou pro hosty k dispozici parkovací místa. Po skončení svatby se k němu pohodlně vrátíte.</p>
+        </div>
       </div>
       <div class="event milestone">
         <span class="time">13:00</span><span class="dot"></span>
@@ -380,20 +508,26 @@
       <div class="event">
         <span class="time">13:40</span><span class="dot"></span>
         <h3>Focení novomanželů</h3>
-        <p>Pro hosty je připraveno občerstvení a pití.</p>
+        <p>Zatímco budeme mít chvilku pro sebe, na vás čeká drobné občerstvení v podobě pití a kanapek. Využijte tento čas k odpočinku, seznámení s ostatními hosty a užívání si svatební atmosféry. 🤍</p>
       </div>
       <div class="event">
         <span class="time">14:40</span><span class="dot"></span>
         <h3>Odchod ze zahrad</h3>
+        <p>Čeká nás krátký, přibližně pětiminutový pěší přesun na tramvajovou zastávku Malostranské náměstí.</p>
       </div>
       <div class="event">
         <span class="time">14:55</span><span class="dot"></span>
-        <h3>Odjezd tramvaje</h3>
-        <p>Ze zastávky Malostranská, pojedeme společně.</p>
+        <h3>Odjezd historické tramvaje</h3>
+        <p>Ze zastávky Malostranské náměstí nás historická tramvaj společně odveze na místo svatební hostiny.</p>
       </div>
       <div class="event">
         <span class="time">15:30</span><span class="dot"></span>
         <h3>Příchod do restaurace</h3>
+        <span class="place">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Bastion Prague Restaurant
+        </span>
+        <p>Po vystoupení z tramvaje se vydáme krátkou cestou k Bastionu, kde bude pokračovat naše svatební oslava.</p>
       </div>
       <div class="event milestone">
         <span class="time">16:00</span><span class="dot"></span>
@@ -420,7 +554,7 @@
       <div class="event">
         <span class="time">19:00</span><span class="dot"></span>
         <h3>Svatební kvíz</h3>
-        <p>Moderuje Richard.</p>
+        <p>Společnou zábavou nás provede Richard Kubernát. Otestujeme, jak dobře nás znáte!</p>
       </div>
       <div class="event">
         <span class="time">20:00</span><span class="dot"></span>
@@ -429,16 +563,33 @@
       <div class="event">
         <span class="time">21:30</span><span class="dot"></span>
         <h3>Odjezd do Cloudroomu</h3>
-        <p>Mezi 21:30 a 22:00.</p>
+        <p>Oficiální část svatebního dne končí, zábava ale rozhodně ne. Pro všechny, kdo budou chtít pokračovat, se přesuneme do našeho oblíbeného podniku Cloudroom — čeká nás neformální pokračování večera plné hudby, smíchu a společných chvil. A protože k našim oblíbeným večerům patří i dobré jídlo a pohoda, těšit se můžete na vodní dýmky, tatarák a řízečky. 😄🤍</p>
+        <p>Přesun do Cloudroomu proběhne individuálně taxíkem.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Playlist a potvrzení účasti: doplní se odkazy, poté se sekce zobrazí (odstranit display:none u .cards) -->
+<section class="cards" id="extra">
+  <div class="cards-inner">
+    <div class="card">
+      <h3>Svatební playlist</h3>
+      <p>Přidejte si do našeho společného playlistu píseň, která na parketu nesmí chybět.</p>
+      <a href="#PLAYLIST_URL" target="_blank" rel="noopener">Přidat píseň</a>
+    </div>
+    <div class="card">
+      <h3>Potvrzení účasti</h3>
+      <p>Dejte nám prosím vědět, zda se uvidíme.</p>
+      <a href="#RSVP_URL" target="_blank" rel="noopener">Potvrdit účast</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="amp-mark">T &amp; A</div>
-  <div class="rule"></div>
-  <p>Těšíme se na vás</p>
+  <div class="rule"><i></i><b></b><i></i></div>
+  <p>Těšíme se na vás · 18. 9. 2026</p>
 </footer>
 
 <script>
@@ -458,15 +609,12 @@
        .catch(function(){ tap.classList.add('show'); });
     }
   }
-
-  // autoplay: ztlumeně + playsinline => povoleno na iOS i Androidu
   vid.muted = true;
   vid.addEventListener('loadeddata', tryPlay);
   vid.addEventListener('canplay', tryPlay);
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && vid.paused) tryPlay();
   });
-  // pojistka: první dotyk kdekoli video spustí, pokud by autoplay selhal
   function firstTouch(){
     if (vid.paused) tryPlay();
     document.removeEventListener('touchstart', firstTouch);
@@ -474,12 +622,10 @@
   }
   document.addEventListener('touchstart', firstTouch, {passive:true});
   document.addEventListener('click', firstTouch);
-
   tap.addEventListener('click', function(){
     tap.classList.remove('show');
     tryPlay();
   });
-
   btn.addEventListener('click', function(e){
     e.stopPropagation();
     vid.muted = !vid.muted;
@@ -489,14 +635,13 @@
     if (vid.paused) tryPlay();
   });
 
-  // jemné odhalování položek harmonogramu při scrollu
   var events = document.querySelectorAll('.event');
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    }, {threshold: 0.15});
+    }, {threshold: 0.12});
     events.forEach(function(el){ io.observe(el); });
   } else {
     events.forEach(function(el){ el.classList.add('in'); });
