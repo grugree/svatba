@@ -146,34 +146,6 @@
   }
   .sound-btn:active{background:rgba(34,48,79,.45);}
   .sound-btn svg{width:20px;height:20px;}
-  .tap-play{
-    position:absolute;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(34,48,79,.25);
-    border:none;
-    cursor:pointer;
-  }
-  .tap-play.show{display:flex;}
-  .tap-play span{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:16px 32px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.85);
-    background:rgba(255,255,255,.18);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    color:#fff;
-    font-size:21px;
-    font-style:italic;
-    font-weight:500;
-    text-shadow:0 1px 10px rgba(34,48,79,.4);
-  }
-  .tap-play svg{width:20px;height:20px;color:#fff;flex:none;}
 
   /* ---------- SPOLEČNÉ ---------- */
   .section-head{text-align:center;margin-bottom:48px;}
@@ -648,13 +620,6 @@
     </a>
   </div>
 
-  <button class="tap-play" id="tapPlay" aria-label="Spustit se zvukem">
-    <span>
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      Spustit se zvukem
-    </span>
-  </button>
-
   <button class="sound-btn" id="soundBtn" aria-label="Zapnout zvuk">
     <svg id="iconMuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
@@ -936,7 +901,6 @@
 <script>
 (function(){
   var vid = document.getElementById('vid');
-  var tap = document.getElementById('tapPlay');
   var btn = document.getElementById('soundBtn');
   var iconMuted = document.getElementById('iconMuted');
   var iconSound = document.getElementById('iconSound');
@@ -954,10 +918,7 @@
     vid.muted = true;
     syncIcon();
     var p = vid.play();
-    if (p && p.catch) {
-      p.then(function(){ tap.classList.remove('show'); })
-       .catch(function(){ tap.classList.add('show'); });
-    }
+    if (p && p.catch) { p.catch(function(){}); } // spustí to první dotyk
   }
 
   // 1. pokus: rovnou se zvukem (projde tam, kde to prohlížeč dovolí)
@@ -966,12 +927,10 @@
     var p = vid.play();
     if (p && p.then) {
       p.then(function(){
-        tap.classList.remove('show');
         syncIcon();
       }).catch(function(){
-        // prohlížeč zvuk zablokoval -> hrát potichu, nabídnout spuštění se zvukem
+        // prohlížeč zvuk zablokoval -> hrát potichu, zvuk zapne první dotyk
         tryPlayMuted();
-        tap.classList.add('show');
         armUnmute();
       });
     }
@@ -986,7 +945,6 @@
         if (vid.paused) vid.play();
         syncIcon();
       }
-      tap.classList.remove('show');
       document.removeEventListener('touchstart', unmute);
       document.removeEventListener('click', unmute);
     }
@@ -998,15 +956,6 @@
   vid.addEventListener('loadeddata', function(){ if (vid.paused) tryPlayLoud(); });
   document.addEventListener('visibilitychange', function(){
     if (!document.hidden && vid.paused) { vid.play(); }
-  });
-
-  tap.addEventListener('click', function(e){
-    e.stopPropagation();
-    tap.classList.remove('show');
-    vid.currentTime = 0;   // pustit od začátku i se zvukem
-    vid.muted = false;
-    vid.play();
-    syncIcon();
   });
 
   btn.addEventListener('click', function(e){
