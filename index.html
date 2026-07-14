@@ -194,12 +194,23 @@
 
   /* ---------- ÚVOD / POZVÁNKA ---------- */
   .intro{
-    padding:76px 30px 28px;
+    position:relative;
+    padding:76px 30px 210px;
     background:
       radial-gradient(480px 320px at 112% 0%, var(--petal-soft) 0%, rgba(245,239,250,0) 60%),
       var(--white);
   }
-  .intro-inner{max-width:460px;margin:0 auto;text-align:center;}
+  .intro-inner{position:relative;z-index:1;max-width:460px;margin:0 auto;text-align:center;}
+  .intro .bloom{
+    position:absolute;
+    left:50%;
+    bottom:-36px;
+    transform:translateX(-50%);
+    width:min(360px, 78vw);
+    opacity:.32;
+    pointer-events:none;
+    z-index:0;
+  }
   .intro h2{
     font-weight:400;
     font-style:italic;
@@ -610,6 +621,7 @@
     <p>Těšíme se na den plný lásky, radosti a společných vzpomínek. Níže najdete harmonogram celého dne.</p>
     <p class="closing">Těšíme se na vás!</p>
   </div>
+  <img class="bloom" src="hortenzie.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="schedule" id="harmonogram">
