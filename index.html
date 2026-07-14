@@ -202,11 +202,14 @@
   }
   .intro-inner{position:relative;z-index:1;max-width:460px;margin:0 auto;text-align:center;}
   .intro .bloom{
-    display:block;
-    margin:30px auto 0;
-    width:min(300px, 68vw);
-    opacity:.2;
+    position:absolute;
+    left:50%;
+    top:54%;
+    transform:translate(-50%,-50%);
+    width:min(430px, 92vw);
+    opacity:.13;
     pointer-events:none;
+    z-index:0;
   }
   .intro h2{
     font-weight:400;
