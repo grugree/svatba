@@ -847,32 +847,27 @@
       <div class="rule"><i></i><b></b><i></i></div>
     </div>
 
-    <form id="rsvpForm" action="https://formsubmit.co/grugree@gmail.com" method="POST" accept-charset="UTF-8">
-      <input type="hidden" name="_subject" value="Svatba – potvrzení účasti">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://grugree.github.io/svatba/?sent=1#rsvp">
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <form id="rsvpForm">
       <div class="field">
         <label for="fName">Jméno a příjmení</label>
-        <input type="text" id="fName" name="Jméno" required autocomplete="name">
+        <input type="text" id="fName" name="entry.1546119546" required autocomplete="name">
       </div>
       <div class="field">
         <label>Účast</label>
         <div class="choice">
-          <label><input type="radio" name="Účast" value="S radostí dorazíme" checked> S radostí dorazíme 🤍</label>
-          <label><input type="radio" name="Účast" value="Bohužel se nezúčastníme"> Bohužel se nezúčastníme</label>
+          <label><input type="radio" name="entry.180434387" value="S radostí dorazíme" checked> S radostí dorazíme 🤍</label>
+          <label><input type="radio" name="entry.180434387" value="Bohužel se nezúčastníme"> Bohužel se nezúčastníme</label>
         </div>
       </div>
       <div class="field">
         <label for="fCount">Počet osob</label>
-        <select id="fCount" name="Počet osob">
-          <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+        <select id="fCount" name="entry.1501434648">
+          <option>1</option><option selected>2</option><option>3</option><option>4</option>
         </select>
       </div>
       <div class="field" style="margin-bottom:24px">
         <label for="fNote">Vzkaz, alergie, přání</label>
-        <textarea id="fNote" name="Vzkaz" placeholder="Nepovinné"></textarea>
+        <textarea id="fNote" name="entry.1389612424" placeholder="Nepovinné"></textarea>
       </div>
       <button type="submit">Odeslat</button>
       <p class="status" id="rsvpStatus"></p>
@@ -988,14 +983,38 @@
     events.forEach(function(el){ el.classList.add('in'); });
   }
 
-  // RSVP: po návratu z FormSubmit (?sent=1) zobrazit poděkování
+  // RSVP: odeslání do Google formuláře na pozadí
+  var GF_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeUD9cwxWFF8ESsUHNQw-7aprjh7BUrJ_sTkQfB4aNjwAx6XA/formResponse';
+  var form = document.getElementById('rsvpForm');
   var status = document.getElementById('rsvpStatus');
-  if (window.location.search.indexOf('sent=1') !== -1) {
+  var sendBtn = form.querySelector('button[type="submit"]');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('fName').value.trim();
+    if (!name) {
+      status.className = 'status err';
+      status.textContent = 'Vyplňte prosím jméno.';
+      return;
+    }
+    var body = new URLSearchParams(new FormData(form)).toString();
+    sendBtn.disabled = true;
     status.className = 'status ok';
-    status.textContent = 'Děkujeme! Vaše odpověď byla odeslána. 🤍';
-    var r = document.getElementById('rsvp');
-    if (r) setTimeout(function(){ r.scrollIntoView({behavior:'smooth'}); }, 400);
-  }
+    status.textContent = 'Odesílám…';
+    fetch(GF_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: body
+    }).then(function(){
+      form.reset();
+      status.textContent = 'Děkujeme! Vaše odpověď byla odeslána. 🤍';
+      sendBtn.disabled = false;
+    }).catch(function(){
+      status.className = 'status err';
+      status.textContent = 'Odeslání se nepodařilo, zkuste to prosím znovu.';
+      sendBtn.disabled = false;
+    });
+  });
 })();
 </script>
 
