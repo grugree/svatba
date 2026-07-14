@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Tom &amp; Anička · 18. září 2026</title>
+<title>Anička &amp; Tom · 18. září 2026</title>
+<meta name="description" content="Svatební pozvánka — Anička & Tom, 18. září 2026">
+<meta property="og:title" content="Anička & Tom · 18. září 2026">
+<meta property="og:description" content="Srdečně vás zveme na naši svatbu. Harmonogram, dresscode a potvrzení účasti.">
+<meta property="og:image" content="https://grugree.github.io/svatba/poster.jpg">
+<meta property="og:type" content="website">
 <link rel="preload" href="video.mp4" as="video" type="video/mp4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -337,6 +342,7 @@
   }
   .event .place svg{width:13px;height:13px;flex:none;}
   .details p{
+    overflow-wrap:break-word;
     margin-top:8px;
     font-size:17px;
     line-height:1.6;
@@ -405,6 +411,21 @@
     opacity:.94;
   }
 
+  /* ---------- DARY ---------- */
+  .gifts{
+    padding:64px 30px 24px;
+    background:
+      radial-gradient(460px 300px at 108% 20%, var(--petal-soft) 0%, rgba(245,239,250,0) 62%),
+      var(--white);
+  }
+  .gifts-inner{max-width:440px;margin:0 auto;text-align:center;}
+  .gifts p{
+    margin-top:18px;
+    font-size:18px;
+    line-height:1.65;
+    color:var(--night);
+  }
+
   /* ---------- RSVP ---------- */
   .rsvp{
     padding:64px 28px 72px;
@@ -429,6 +450,12 @@
     letter-spacing:.02em;
     color:var(--sky);
     margin-bottom:7px;
+  }
+  .field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%235C77AE' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    background-size:16px;
   }
   .field input[type="text"],
   .field select,
@@ -538,6 +565,19 @@
     color:var(--sky);
   }
   footer .rule{margin-top:16px;}
+  footer .yt-link{
+    display:inline-block;
+    margin-top:22px;
+    padding:11px 26px;
+    border-radius:999px;
+    border:1px solid var(--lilac);
+    color:var(--sky);
+    background:rgba(255,255,255,.6);
+    text-decoration:none;
+    font-size:19px;
+    font-style:italic;
+    font-weight:500;
+  }
   footer p{
     margin-top:16px;
     font-size:19px;
@@ -557,6 +597,26 @@
   @media (min-width:600px){
     .hero-names h1{font-size:58px;}
   }
+  @media (min-width:900px){
+    .hero{
+      background:linear-gradient(160deg, var(--petal) 0%, var(--dew-soft) 55%, var(--dew) 100%);
+    }
+    .hero video{
+      left:50%;
+      width:auto;
+      max-width:none;
+      transform:translateX(-50%);
+      object-fit:contain;
+      filter:drop-shadow(0 18px 60px rgba(34,48,79,.28));
+    }
+    .hero-veil{
+      background:linear-gradient(to bottom, rgba(34,48,79,.18) 0%, rgba(34,48,79,0) 30%, rgba(34,48,79,0) 62%, rgba(34,48,79,.3) 100%);
+    }
+    .schedule-inner, .intro-inner, .gifts-inner, .rsvp-inner, .dress-inner{max-width:560px;}
+    .intro p, .gifts p, .dress-text{font-size:20px;}
+    .details p, .details .note p{font-size:18px;}
+    .event h3{font-size:26px;}
+  }
 </style>
 </head>
 <body>
@@ -568,7 +628,7 @@
   <div class="hero-names">
     <div class="eyebrow">Budeme se brát</div>
     <div class="line"></div>
-    <h1>Tom <span class="amp">&amp;</span> Anička</h1>
+    <h1>Anička <span class="amp">&amp;</span> Tom</h1>
     <div class="date">18. září 2026</div>
   </div>
 
@@ -701,7 +761,7 @@
 
       <div class="event milestone">
         <span class="time">16:00</span><span class="dot"></span>
-        <div class="event-head"><h3>Hostina a proslovy</h3></div>
+        <div class="event-head"><h3>Svatební hostina</h3></div>
       </div>
 
       <div class="event">
@@ -730,7 +790,7 @@
         </button>
         <div class="details"><div>
           <div class="note">
-            <p>Holčičí i klučičí verze — ta s rumem.</p>
+            <p>Dámská i pánská verze.</p>
           </div>
         </div></div>
       </div>
@@ -794,6 +854,18 @@
   </div>
 </section>
 
+<section class="gifts" id="dary">
+  <div class="gifts-inner">
+    <div class="section-head" style="margin-bottom:30px">
+      <div class="eyebrow">Z lásky</div>
+      <h2>Dary</h2>
+      <div class="rule"><i></i><b></b><i></i></div>
+    </div>
+    <p>To nejcennější, co nám můžete dát, je váš čas, přítomnost a sdílení našeho svatebního dne s námi. 🤍</p>
+    <p>Pokud byste nám chtěli věnovat svatební dar, budeme rádi za finanční příspěvek, který využijeme na naše společné plány, sny a zážitky.</p>
+  </div>
+</section>
+
 <section class="rsvp" id="rsvp">
   <div class="rsvp-inner">
     <div class="section-head" style="margin-bottom:34px">
@@ -847,9 +919,10 @@
 </section>
 
 <footer>
-  <div class="amp-mark">T &amp; A</div>
+  <div class="amp-mark">A &amp; T</div>
   <div class="rule"><i></i><b></b><i></i></div>
   <p>Těšíme se na vás · 18. 9. 2026</p>
+  <a class="yt-link" href="https://youtube.com/shorts/z4jgNBqZUNY" target="_blank" rel="noopener">🎬 Naše svatební video</a>
 </footer>
 
 <script>
@@ -861,38 +934,75 @@
   var iconSound = document.getElementById('iconSound');
 
 
-  function tryPlay(){
+  var userMuted = false; // host sám ztlumil -> už nezasahovat
+
+  function syncIcon(){
+    iconMuted.style.display = vid.muted ? '' : 'none';
+    iconSound.style.display = vid.muted ? 'none' : '';
+    btn.setAttribute('aria-label', vid.muted ? 'Zapnout zvuk' : 'Ztlumit');
+  }
+
+  function tryPlayMuted(){
+    vid.muted = true;
+    syncIcon();
     var p = vid.play();
     if (p && p.catch) {
       p.then(function(){ tap.classList.remove('show'); })
        .catch(function(){ tap.classList.add('show'); });
     }
   }
-  vid.muted = true;
-  tryPlay();
-  vid.addEventListener('loadeddata', tryPlay);
-  vid.addEventListener('canplay', tryPlay);
-  document.addEventListener('visibilitychange', function(){
-    if (!document.hidden && vid.paused) tryPlay();
-  });
-  function firstTouch(){
-    if (vid.paused) tryPlay();
-    document.removeEventListener('touchstart', firstTouch);
-    document.removeEventListener('click', firstTouch);
+
+  // 1. pokus: rovnou se zvukem (projde tam, kde to prohlížeč dovolí)
+  function tryPlayLoud(){
+    vid.muted = false;
+    var p = vid.play();
+    if (p && p.then) {
+      p.then(function(){
+        tap.classList.remove('show');
+        syncIcon();
+      }).catch(function(){
+        // prohlížeč zvuk zablokoval -> hrát potichu a zvuk zapnout při 1. dotyku
+        tryPlayMuted();
+        armUnmute();
+      });
+    }
   }
-  document.addEventListener('touchstart', firstTouch, {passive:true});
-  document.addEventListener('click', firstTouch);
+
+  // zapnout zvuk při prvním dotyku/kliknutí kdekoli
+  function armUnmute(){
+    function unmute(e){
+      if (btn.contains(e.target)) return; // klik na tlačítko řeší tlačítko samo
+      if (!userMuted) {
+        vid.muted = false;
+        if (vid.paused) vid.play();
+        syncIcon();
+      }
+      document.removeEventListener('touchstart', unmute);
+      document.removeEventListener('click', unmute);
+    }
+    document.addEventListener('touchstart', unmute, {passive:true});
+    document.addEventListener('click', unmute);
+  }
+
+  tryPlayLoud();
+  vid.addEventListener('loadeddata', function(){ if (vid.paused) tryPlayLoud(); });
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && vid.paused) { vid.play(); }
+  });
+
   tap.addEventListener('click', function(){
     tap.classList.remove('show');
-    tryPlay();
+    vid.muted = false;
+    vid.play();
+    syncIcon();
   });
+
   btn.addEventListener('click', function(e){
     e.stopPropagation();
     vid.muted = !vid.muted;
-    iconMuted.style.display = vid.muted ? '' : 'none';
-    iconSound.style.display = vid.muted ? 'none' : '';
-    btn.setAttribute('aria-label', vid.muted ? 'Zapnout zvuk' : 'Vypnout zvuk');
-    if (vid.paused) tryPlay();
+    userMuted = vid.muted;
+    syncIcon();
+    if (vid.paused) vid.play();
   });
 
   // rozklikávací harmonogram
