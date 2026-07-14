@@ -375,6 +375,41 @@
     font-weight:400;
   }
 
+  /* ---------- DRESSCODE ---------- */
+  .dresscode{
+    padding:64px 28px 24px;
+    background:var(--white);
+  }
+  .dress-inner{max-width:440px;margin:0 auto;}
+  .dress-text{
+    text-align:center;
+    font-size:18px;
+    line-height:1.65;
+    color:var(--night);
+    margin-bottom:30px;
+  }
+  .palette{
+    display:grid;
+    gap:12px;
+  }
+  .swatch{
+    height:72px;
+    border-radius:16px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:12px;
+    box-shadow:0 2px 14px rgba(34,48,79,.08);
+  }
+  .swatch span{
+    font-size:13px;
+    letter-spacing:.24em;
+    text-indent:.24em;
+    text-transform:uppercase;
+    font-weight:500;
+    opacity:.92;
+  }
+
   /* ---------- RSVP ---------- */
   .rsvp{
     padding:64px 28px 72px;
@@ -736,6 +771,24 @@
   </div>
 </section>
 
+<section class="dresscode" id="dresscode">
+  <div class="dress-inner">
+    <div class="section-head" style="margin-bottom:34px">
+      <div class="eyebrow">Sladíme se?</div>
+      <h2>Dresscode</h2>
+      <div class="rule"><i></i><b></b><i></i></div>
+    </div>
+    <p class="dress-text">Uděláte nám radost, když se obléknete do barev naší svatební palety — od jemné lila po půlnoční modrou.</p>
+    <div class="palette">
+      <div class="swatch" style="background:#E9DFF5;color:#5C77AE"><span>Blushing Petal</span></div>
+      <div class="swatch" style="background:#B49CD8;color:#FFFFFF"><span>Lilac Mist</span></div>
+      <div class="swatch" style="background:#A9C0EA;color:#22304F"><span>Morning Dew</span></div>
+      <div class="swatch" style="background:#5C77AE;color:#FFFFFF"><span>Seaside Sky</span></div>
+      <div class="swatch" style="background:#22304F;color:#FFFFFF"><span>Twilight Bloom</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="rsvp" id="rsvp">
   <div class="rsvp-inner">
     <div class="section-head" style="margin-bottom:34px">
@@ -855,7 +908,7 @@
   }
 
   // RSVP -> FormSubmit (e-mail se doplní)
-  var RSVP_EMAIL = '__RSVP_EMAIL__';
+  var RSVP_EMAIL = 'grugree@gmail.com';
   var form = document.getElementById('rsvpForm');
   var status = document.getElementById('rsvpStatus');
   form.addEventListener('submit', function(e){
