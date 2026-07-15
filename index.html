@@ -642,10 +642,10 @@
     <p>Těšíme se na den plný lásky, radosti a společných vzpomínek. Níže najdete harmonogram celého dne.</p>
     <p class="closing">Těšíme se na vás!</p>
     <div class="countdown" id="countdown" aria-label="Odpočet do svatby">
-      <div class="cd-box"><span class="cd-num" id="cdD">–</span><span class="cd-lab">dní</span></div>
-      <div class="cd-box"><span class="cd-num" id="cdH">–</span><span class="cd-lab">hodin</span></div>
-      <div class="cd-box"><span class="cd-num" id="cdM">–</span><span class="cd-lab">minut</span></div>
-      <div class="cd-box"><span class="cd-num" id="cdS">–</span><span class="cd-lab">vteřin</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdD">–</span><span class="cd-lab" id="cdDl">dní</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdH">–</span><span class="cd-lab" id="cdHl">hodin</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdM">–</span><span class="cd-lab" id="cdMl">minut</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdS">–</span><span class="cd-lab" id="cdSl">vteřin</span></div>
     </div>
   </div>
 </section>
@@ -973,6 +973,13 @@
     var target = new Date('2026-09-18T12:00:00+02:00').getTime();
     var eD = document.getElementById('cdD'), eH = document.getElementById('cdH'),
         eM = document.getElementById('cdM'), eS = document.getElementById('cdS');
+    var lD = document.getElementById('cdDl'), lH = document.getElementById('cdHl'),
+        lM = document.getElementById('cdMl'), lS = document.getElementById('cdSl');
+    function cz(n, one, few, many){
+      if (n === 1) return one;
+      if (n >= 2 && n <= 4) return few;
+      return many;
+    }
     function tick(){
       var diff = target - Date.now();
       if (diff <= 0) {
@@ -982,10 +989,16 @@
         return;
       }
       var s = Math.floor(diff/1000);
-      eD.textContent = Math.floor(s/86400);
-      eH.textContent = ('0'+Math.floor(s%86400/3600)).slice(-2);
-      eM.textContent = ('0'+Math.floor(s%3600/60)).slice(-2);
-      eS.textContent = ('0'+(s%60)).slice(-2);
+      var d = Math.floor(s/86400), hod = Math.floor(s%86400/3600),
+          min = Math.floor(s%3600/60), sec = s%60;
+      eD.textContent = d;
+      eH.textContent = ('0'+hod).slice(-2);
+      eM.textContent = ('0'+min).slice(-2);
+      eS.textContent = ('0'+sec).slice(-2);
+      lD.textContent = cz(d, 'den', 'dny', 'dní');
+      lH.textContent = cz(hod, 'hodina', 'hodiny', 'hodin');
+      lM.textContent = cz(min, 'minuta', 'minuty', 'minut');
+      lS.textContent = cz(sec, 'vteřina', 'vteřiny', 'vteřin');
     }
     tick();
     var iv = setInterval(tick, 1000);
