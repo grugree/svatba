@@ -409,9 +409,8 @@
     height:72px;
     border-radius:16px;
     display:flex;
-    align-items:flex-end;
+    align-items:center;
     justify-content:center;
-    padding-bottom:12px;
     box-shadow:0 2px 14px rgba(34,48,79,.08);
   }
   .swatch span{
@@ -534,35 +533,6 @@
   }
   .rsvp .status.ok{display:block;color:var(--sky);}
   .rsvp .status.err{display:block;color:#A15B7C;}
-
-  /* ---------- PLAYLIST (zatím skryto, čeká na odkaz) ---------- */
-  .cards{
-    display:none;
-    padding:8px 28px 64px;
-    background:var(--white);
-  }
-  .cards-inner{max-width:480px;margin:0 auto;display:grid;gap:18px;}
-  .card{
-    text-align:center;
-    padding:30px 26px;
-    border-radius:20px;
-    background:linear-gradient(135deg, var(--petal-soft), var(--dew-soft));
-    border:1px solid var(--petal);
-  }
-  .card h3{font-weight:500;font-size:26px;color:var(--night);}
-  .card p{margin-top:8px;font-size:17px;line-height:1.6;color:var(--ink-soft);}
-  .card a{
-    display:inline-block;
-    margin-top:16px;
-    padding:12px 28px;
-    border-radius:999px;
-    background:var(--night);
-    color:var(--white);
-    text-decoration:none;
-    font-size:19px;
-    font-weight:500;
-    letter-spacing:.04em;
-  }
 
   /* ---------- PATIČKA ---------- */
   footer{
@@ -900,7 +870,7 @@
       <div class="field">
         <label for="fCount">Počet osob</label>
         <select id="fCount" name="entry.1501434648">
-          <option>1</option><option selected>2</option><option>3</option><option>4</option>
+          <option selected>1</option><option>2</option><option>3</option><option>4</option>
         </select>
       </div>
       <div class="field" style="margin-bottom:24px">
@@ -913,16 +883,6 @@
   </div>
 </section>
 
-<!-- Playlist: doplní se odkaz, poté odstranit display:none u .cards -->
-<section class="cards" id="extra">
-  <div class="cards-inner">
-    <div class="card">
-      <h3>Svatební playlist</h3>
-      <p>Přidejte si do našeho společného playlistu píseň, která na parketu nesmí chybět.</p>
-      <a href="#PLAYLIST_URL" target="_blank" rel="noopener">Přidat píseň</a>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="amp-mark">A &amp; T</div>
